@@ -32,10 +32,18 @@
           </div>
         </div>
         <div class="col-6">
-          <div class="mb-3">
+                <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email"
-            name="email" [(ngModel)]="addcustomerresponse.email">
+            name="email" required email [(ngModel)]="addcustomerresponse.email" #email="ngModel">
+            <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
+              <div *ngIf="email.errors?.['required']" class="text-danger">
+                Email is required
+              </div>
+              <div *ngIf="email.errors?.['email']" class="text-danger">
+                Invalid Email Address
+              </div>
+            </div>
           </div>
         </div>
       </div>
